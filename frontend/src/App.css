@@ -1,0 +1,355 @@
+:root {
+  --teccart-blue: #075bb8;
+  --teccart-blue-light: #2f8cff;
+  --teccart-blue-soft: rgba(47, 140, 255, 0.18);
+  --teccart-ink: #070b14;
+  --teccart-panel: #0d1422;
+  --teccart-panel-soft: #111b2c;
+  --teccart-line: rgba(255, 255, 255, 0.12);
+  --teccart-text: #f7fbff;
+  --teccart-muted: #aab7cc;
+}
+
+.App {
+  min-height: 100vh;
+  padding: 32px;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(7, 91, 184, 0.44), transparent 32%),
+    radial-gradient(circle at 86% 18%, rgba(47, 140, 255, 0.2), transparent 28%),
+    linear-gradient(135deg, #05070d 0%, #08101d 46%, #10131b 100%);
+  color: var(--teccart-text);
+}
+
+.chat-shell {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: min(980px, 100%);
+  height: calc(100vh - 64px);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(7, 12, 22, 0.94);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.52);
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 26px;
+  border-bottom: 1px solid var(--teccart-line);
+  background:
+    linear-gradient(90deg, rgba(7, 91, 184, 0.3), rgba(13, 20, 34, 0.9)),
+    var(--teccart-panel);
+  backdrop-filter: blur(12px);
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 54px;
+  height: 54px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  background: var(--teccart-blue);
+  box-shadow:
+    0 0 0 5px rgba(7, 91, 184, 0.22),
+    0 16px 34px rgba(0, 0, 0, 0.35);
+}
+
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chat-kicker {
+  margin: 0 0 5px;
+  color: rgba(247, 251, 255, 0.72);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.chat-header h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.72rem;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.connection-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 92, 122, 0.4);
+  border-radius: 999px;
+  color: #ffc2cf;
+  background: rgba(255, 92, 122, 0.1);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.connection-pill::before {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff5c7a;
+  box-shadow: 0 0 12px rgba(255, 92, 122, 0.85);
+  content: "";
+}
+
+.connection-pill.is-connected {
+  border-color: rgba(47, 140, 255, 0.48);
+  color: #d8eaff;
+  background: rgba(7, 91, 184, 0.22);
+}
+
+.connection-pill.is-connected::before {
+  background: var(--teccart-blue-light);
+  box-shadow: 0 0 12px rgba(47, 140, 255, 0.9);
+}
+
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+  padding: 28px;
+  overflow-y: auto;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(9, 16, 28, 0.97) 0%, rgba(5, 8, 15, 0.98) 100%);
+  background-size: 38px 38px, auto;
+  scrollbar-color: #25446f transparent;
+}
+
+.messages-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.messages-list::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: #25446f;
+  background-clip: padding-box;
+}
+
+.empty-state {
+  display: grid;
+  place-content: center;
+  min-height: 100%;
+  color: var(--teccart-muted);
+  text-align: center;
+}
+
+.empty-state h2 {
+  margin: 0 0 8px;
+  color: #ffffff;
+  font-size: 1.42rem;
+  letter-spacing: 0;
+}
+
+.empty-state p {
+  max-width: 320px;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.message-row {
+  display: flex;
+  width: 100%;
+}
+
+.message-row.from-user {
+  justify-content: flex-end;
+}
+
+.message-row.from-assistant {
+  justify-content: flex-start;
+}
+
+.message-bubble {
+  max-width: min(74%, 700px);
+  padding: 13px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: var(--teccart-panel-soft);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.26);
+  color: var(--teccart-text);
+  text-align: left;
+}
+
+.from-user .message-bubble {
+  border-color: rgba(255, 255, 255, 0.24);
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--teccart-blue) 0%, var(--teccart-blue-light) 100%);
+}
+
+.message-bubble.is-error {
+  border-color: rgba(255, 92, 122, 0.5);
+  color: #ffd5dd;
+  background: rgba(104, 32, 48, 0.52);
+}
+
+.message-meta {
+  margin-bottom: 6px;
+  color: #9fcbff;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.from-user .message-meta {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.message-content {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.typing-caret {
+  display: inline-block;
+  width: 7px;
+  height: 1.1em;
+  margin-left: 4px;
+  border-radius: 4px;
+  background: currentColor;
+  vertical-align: -0.2em;
+  animation: caret-blink 1s ease-in-out infinite;
+}
+
+.chat-input {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  padding: 18px;
+  border-top: 1px solid var(--teccart-line);
+  background: var(--teccart-panel);
+}
+
+.chat-input textarea {
+  min-height: 50px;
+  max-height: 160px;
+  resize: vertical;
+  padding: 14px 15px;
+  border: 1px solid #253653;
+  border-radius: 8px;
+  color: var(--teccart-text);
+  background: #070d18;
+  font: inherit;
+  line-height: 1.45;
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.chat-input textarea::placeholder {
+  color: #7f8da6;
+}
+
+.chat-input textarea:focus {
+  border-color: var(--teccart-blue-light);
+  background: #091323;
+  box-shadow: 0 0 0 4px rgba(47, 140, 255, 0.16);
+}
+
+.chat-input textarea:disabled {
+  color: #7d8aa2;
+  background: #121b2b;
+}
+
+.chat-input button {
+  min-width: 116px;
+  height: 50px;
+  align-self: end;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  color: #ffffff;
+  background: var(--teccart-blue);
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.chat-input button:hover:not(:disabled) {
+  background: var(--teccart-blue-light);
+  box-shadow: 0 14px 28px rgba(47, 140, 255, 0.28);
+  transform: translateY(-1px);
+}
+
+.chat-input button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+@keyframes caret-blink {
+  0%,
+  100% {
+    opacity: 0.22;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 680px) {
+  .App {
+    padding: 0;
+  }
+
+  .chat-shell {
+    height: 100vh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .chat-header {
+    align-items: flex-start;
+    padding: 18px;
+  }
+
+  .brand-mark {
+    width: 46px;
+    height: 46px;
+  }
+
+  .chat-header h1 {
+    font-size: 1.42rem;
+  }
+
+  .messages-list {
+    padding: 18px;
+  }
+
+  .message-bubble {
+    max-width: 88%;
+  }
+
+  .chat-input {
+    grid-template-columns: 1fr;
+  }
+
+  .chat-input button {
+    width: 100%;
+  }
+}
